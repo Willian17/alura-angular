@@ -6,9 +6,10 @@ import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 
 const routes: Routes = [
+    { path: '', redirectTo: 'user/flavio', pathMatch: 'full' },
     { path: 'user/:username', component: PhotoListComponent },
     { path: 'p/add', component: PhotoFormComponent },
-    { path: '**', component: NotFoundComponent}
+    { path: '**', component: NotFoundComponent},
 ];
 
 @NgModule({
