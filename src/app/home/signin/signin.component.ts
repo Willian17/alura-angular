@@ -35,7 +35,7 @@ export class SigninComponent implements OnInit {
     this.authService
       .authenticate(username, password)
       .subscribe(
-        (user: any) => this.router.navigate(['user', user.name]),
+        () => this.router.navigate(['user', username]),
         err => {
           console.log(err);
           this.loginForm.reset();

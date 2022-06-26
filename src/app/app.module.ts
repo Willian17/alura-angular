@@ -9,6 +9,7 @@ import { ErrorsModule } from './errors/errors.module';
 import { FormsModule } from '@angular/forms';
 import { DarkenOnHoverModule } from './shared/directives/darken-on-hover/darken-on-hover.module';
 import { HomeModule } from './home/home.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HomeModule } from './home/home.module';
     HttpClientModule,
     AppRoutingModule,
     ErrorsModule,
-    HomeModule
+    HomeModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
