@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { TokenService } from '../token/token.service';
+import { UserService } from '../user/user.service';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class AuthService {
 
     constructor(
         private http: HttpClient,
-        private tokenService: TokenService
+        private userService: UserService
     ) { }
 
     authenticate(userName: string, password: string) {
@@ -23,7 +24,7 @@ export class AuthService {
             )
             .pipe(tap(res => {
                 const authToken = res.headers.get('x-access-token');
-                this.tokenService.setToken(authToken);
+                this.userService.setToken(authToken);
             }))
     }
 }
