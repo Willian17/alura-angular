@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { ErrorsModule } from './errors/errors.module';
 import { FormsModule } from '@angular/forms';
 import { DarkenOnHoverModule } from './shared/directives/darken-on-hover/darken-on-hover.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { DarkenOnHoverModule } from './shared/directives/darken-on-hover/darken-
     HttpClientModule,
     AppRoutingModule,
     ErrorsModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
