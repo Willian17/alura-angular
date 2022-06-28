@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { DarkenOnHoverModule } from './shared/directives/darken-on-hover/darken-on-hover.module';
 import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/core.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     ErrorsModule,
     HomeModule,
-    CoreModule
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
