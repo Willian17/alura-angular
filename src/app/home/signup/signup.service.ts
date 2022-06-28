@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { INewUser } from './INewUser';
 
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class SignUpService {
   baseUrl = "http://localhost:3000";
   constructor(private http: HttpClient) { }

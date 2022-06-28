@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PlatformDectorService } from 'src/app/core/platform-dector/platform-dector.service';
 import { lowerCaseValidator } from 'src/app/shared/validators/lower-case.validator';
 import { INewUser } from './INewUser';
 import { SignUpService } from './signup.service';
@@ -9,18 +10,20 @@ import { UserNotTakenValidatorService } from './user-not-taken-validator.service
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
+  providers: [UserNotTakenValidatorService]
 })
 export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
+  @ViewChild('emailInput') emailInput: ElementRef<HTMLInputElement>;
 
   constructor(
     private formBuilder: FormBuilder,
     private userNotTakenValidatorService: UserNotTakenValidatorService,
     private signUpService: SignUpService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private platformDetectorService: PlatformDectorService) { }
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
@@ -54,15 +57,23 @@ export class SignupComponent implements OnInit {
         ]
       ]
     });
+    this.platformDetectorService.isPlatformBrowser() &&
+      this.emailInput.nativeElement.focus();
   }
 
   signup() {
     const newUser = this.signupForm.getRawValue() as INewUser;
     this.signUpService
-        .signup(newUser)
-        .subscribe(
-            () => this.router.navigate(['']),
-            err => console.log(err)
-        );
-}
+      .signup(newUser)
+      .subscribe(
+        () => this.router.navigate(['']),
+        err => {
+          console.log(err);
+          this.signupForm.reset();
+          this.platformDetectorService.isPlatformBrowser() &&
+            this.emailInput.nativeElement.focus();
+          alert(err.error.message);
+        }
+      );
+  }
 }

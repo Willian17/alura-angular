@@ -8,12 +8,18 @@ import { PhotoListResolver } from './photos/photo-list/photo-list.resolver';
 import { SigninComponent } from './home/signin/signin.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { SignupComponent } from './home/signup/signup.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-    { path: '', component: SigninComponent, pathMatch: 'full', canActivate: [AuthGuard] },
     {
-        path: 'signup',
-        component: SignupComponent,
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home'
+    },
+    {
+        path: 'home',
+        loadChildren: './home/home.module#HomeModule'
+
     },
     { path: 'user/:username', component: PhotoListComponent, resolve: { photos: PhotoListResolver } },
     { path: 'p/add', component: PhotoFormComponent },
@@ -21,7 +27,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, {useHash: true})],
     exports: [RouterModule]
 
 })
