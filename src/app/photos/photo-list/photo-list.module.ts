@@ -10,6 +10,7 @@ import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
 import { DarkenOnHoverDirective } from 'src/app/shared/directives/darken-on-hover/darken-on-hover.directive';
 import { DarkenOnHoverModule } from 'src/app/shared/directives/darken-on-hover/darken-on-hover.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -24,8 +25,8 @@ import { DarkenOnHoverModule } from 'src/app/shared/directives/darken-on-hover/d
         FormsModule,
         PhotoModule,
         CardModule,
-        DarkenOnHoverModule
-
+        DarkenOnHoverModule,
+        RouterModule
     ]
 })
 export class PhotoListModule { }

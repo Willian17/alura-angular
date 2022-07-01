@@ -29,4 +29,8 @@ export class PhotoService {
 
     return this.http.post(`${this.baseUrl}/photos/upload`, formData);
   }
+
+  findById(id: string) {
+    return this.http.get<IPhoto>(this.baseUrl + '/photos/' + id);
+  }
 }
