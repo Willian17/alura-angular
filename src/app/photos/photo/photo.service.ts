@@ -20,4 +20,13 @@ export class PhotoService {
     return this.http
       .get<IPhoto[]>(`${this.baseUrl}/${userName}/photos`, { params })
   }
+
+  upload(description: string, allowComments: boolean, file: File) {
+    const formData = new FormData();
+    formData.append('description', description);
+    formData.append('allowComments', `${allowComments}`);
+    formData.append('imageFile', file);
+
+    return this.http.post(`${this.baseUrl}/photos/upload`, formData);
+  }
 }
