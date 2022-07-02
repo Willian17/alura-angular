@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
-import { IPhoto } from "../photo/photo";
+import { IPhoto } from "../../shared/interfaces/IPhoto";
 import { PhotoService } from "../photo/photo.service";
 
 @Injectable({

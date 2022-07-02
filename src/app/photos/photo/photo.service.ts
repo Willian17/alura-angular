@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IPhoto } from './photo';
+import { IPhotoComment } from 'src/app/shared/interfaces/IPhotoComment';
+import { IPhoto } from '../../shared/interfaces/IPhoto';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,20 @@ export class PhotoService {
     return this.http.post(`${this.baseUrl}/photos/upload`, formData);
   }
 
-  findById(id: string) {
+  findById(id: number) {
     return this.http.get<IPhoto>(this.baseUrl + '/photos/' + id);
+  }
+
+  getComments(id: number) {
+    return this.http.get<IPhotoComment[]>(
+      this.baseUrl + '/photos/' + id + '/comments');
+  }
+
+  addComment(photoId: number, commentText: string) {
+    return this.http.post(
+      this.baseUrl + '/photos/' + photoId + '/comments',
+      { commentText }
+    );
+
   }
 }

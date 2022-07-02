@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import { IPhoto } from '../photo/photo';
+import { IPhoto } from '../../shared/interfaces/IPhoto';
 import { debounceTime } from 'rxjs/operators';
 import { PhotoService } from '../photo/photo.service';
 
@@ -26,9 +26,11 @@ export class PhotoListComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this.userName = this.activatedRoute.snapshot.params.username;
-    this.photos = this.activatedRoute.snapshot.data.photos;
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      this.userName = params.username;
+      this.photos = this.activatedRoute.snapshot.data['photos'];
+    });
   }
 
 

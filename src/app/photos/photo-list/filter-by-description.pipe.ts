@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IPhoto } from '../photo/photo';
+import { IPhoto } from '../../shared/interfaces/IPhoto';
 
 @Pipe({
   name: 'filterByDescription'

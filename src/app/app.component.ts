@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { IPhoto } from './photos/photo/photo';
+import { IPhoto } from './shared/interfaces/IPhoto';
 import { PhotoService } from './photos/photo/photo.service';
 @Component({
   selector: 'app-root',
