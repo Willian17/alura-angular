@@ -45,6 +45,8 @@ export class PhotoService {
       this.baseUrl + '/photos/' + photoId + '/comments',
       { commentText }
     );
-
+  }
+  removePhoto(photoId: number) {
+    return this.http.delete(this.baseUrl + '/photos/' + photoId);
   }
 }
