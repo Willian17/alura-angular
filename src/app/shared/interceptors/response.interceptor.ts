@@ -32,7 +32,7 @@ export class ResponseInterceptor implements HttpInterceptor {
                             this.router.navigate(['not-found']);
                             break;
                     }
-                    if (error.error.message) {
+                    if (error.error && error.error.message) {
                         this.alertService.warning(error.error.message);
                     }
                     throw error;
