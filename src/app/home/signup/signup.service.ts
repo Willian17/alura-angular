@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { INewUser } from './INewUser';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable()
 export class SignUpService {
-  baseUrl = "http://localhost:3000";
+  baseUrl = environment.apiUrl;
+  
   constructor(private http: HttpClient) { }
 
   checkUserNameTaken(userName: string) {

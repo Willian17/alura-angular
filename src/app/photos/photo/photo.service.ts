@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { IPhotoComment } from 'src/app/shared/interfaces/IPhotoComment';
+import { environment } from 'src/environments/environment';
 import { IPhoto } from '../../shared/interfaces/IPhoto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PhotoService {
-
-  baseUrl = 'http://localhost:3000';
+  baseUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient
