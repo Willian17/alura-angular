@@ -33,6 +33,7 @@ export class ResponseInterceptor implements HttpInterceptor {
                             break;
                     }
                     if (error.error && error.error.message) {
+                        console.log(error.error.message);
                         this.alertService.warning(error.error.message);
                     }
                     throw error;

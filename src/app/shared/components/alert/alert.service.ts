@@ -13,11 +13,9 @@ export class AlertService {
 
     router.events.subscribe(event => {
         if(event instanceof NavigationStart) {
-            if(this.keepAfterRouteChange) {
-                this.keepAfterRouteChange = false
-            } else {
-                this.clear();
-            }	
+            if(!this.keepAfterRouteChange) {
+              this.clear();
+            }
         }
     })
 }
