@@ -7,12 +7,14 @@ import { RequestInterceptor } from '../shared/interceptors/request.interceptor';
 import { FooterComponent } from './footer/footer.component';
 import { AlertModule } from '../shared/components/alert/alert.module';
 import { ResponseInterceptor } from '../shared/interceptors/response.interceptor';
+import { LoadingModule } from '../shared/components/loading/loading.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    AlertModule
+    AlertModule,
+    LoadingModule
   ],
   declarations: [
     HeaderComponent,
