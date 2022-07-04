@@ -37,7 +37,7 @@ export class PhotoDetailsComponent implements OnInit {
       .removePhoto(this.photoId)
       .subscribe(
         () => {
-          this.router.navigate(['']);
+          this.router.navigate([''], { replaceUrl: true });
           this.alertService.success("Photo removed");
         },
         err => {
@@ -45,7 +45,7 @@ export class PhotoDetailsComponent implements OnInit {
           this.alertService.warning('Could not delete the photo!');
         });
   }
-  
+
   handleLike(photo: IPhoto) {
     this.photoService
       .like(photo.id)
