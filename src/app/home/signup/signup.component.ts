@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PlatformDectorService } from 'src/app/core/platform-dector/platform-dector.service';
 import { lowerCaseValidator } from 'src/app/shared/validators/lower-case.validator';
+import { userNamePassword } from 'src/app/shared/validators/username-password.validator';
 import { INewUser } from './INewUser';
 import { SignUpService } from './signup.service';
 import { UserNotTakenValidatorService } from './user-not-taken-validator.service';
@@ -56,24 +57,29 @@ export class SignupComponent implements OnInit {
           Validators.maxLength(14)
         ]
       ]
-    });
+    }, { validator: userNamePassword });
+
     this.platformDetectorService.isPlatformBrowser() &&
       this.emailInput.nativeElement.focus();
   }
 
   signup() {
-    const newUser = this.signupForm.getRawValue() as INewUser;
-    this.signUpService
-      .signup(newUser)
-      .subscribe(
-        () => this.router.navigate(['']),
-        err => {
-          console.log(err);
-          this.signupForm.reset();
-          this.platformDetectorService.isPlatformBrowser() &&
-            this.emailInput.nativeElement.focus();
-          alert(err.error.message);
-        }
-      );
+    if (this.signupForm.valid && !this.signupForm.pending) {
+      const newUser = this.signupForm.getRawValue() as INewUser;
+
+      this.signUpService
+        .signup(newUser)
+        .subscribe(
+          () => this.router.navigate(['']),
+          err => {
+            console.log(err);
+            this.signupForm.reset();
+            this.platformDetectorService.isPlatformBrowser() &&
+              this.emailInput.nativeElement.focus();
+            alert(err.error.message);
+          }
+        );
+
+    }
   }
 }
