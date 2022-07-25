@@ -4,7 +4,6 @@ import { Router } from "@angular/router";
 import { Observable, of } from "rxjs";
 import { delay, map, mergeMap, retryWhen } from "rxjs/operators";
 import { UserService } from "src/app/core/user/user.service";
-import { TokenService } from "../../core/token/token.service";
 import { AlertService } from "../components/alert/alert.service";
 
 @Injectable()
@@ -27,9 +26,6 @@ export class ResponseInterceptor implements HttpInterceptor {
                         case 401:
                             this.userService.logout();
                             this.router.navigate(['']);
-                            break;
-                        case 404:
-                            this.router.navigate(['not-found']);
                             break;
                     }
                     if (error.error && error.error.message) {
